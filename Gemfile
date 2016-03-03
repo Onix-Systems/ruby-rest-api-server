@@ -35,6 +35,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Shim to load environment variables from .env into ENV in development.
 gem 'dotenv-rails'
 
+# Token based authentication for Rails JSON APIs.
+gem 'devise_token_auth'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
