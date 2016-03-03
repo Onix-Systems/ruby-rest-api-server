@@ -40,3 +40,5 @@ bower.json
 .byebug_history
 
 .rbenv-gemsets
+.env.development
+.env.production
