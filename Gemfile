@@ -38,6 +38,9 @@ gem 'dotenv-rails'
 # Token based authentication for Rails JSON APIs.
 gem 'devise_token_auth'
 
+# Standardized Multi-Provider Authentication
+gem 'omniauth'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
