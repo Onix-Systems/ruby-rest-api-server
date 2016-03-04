@@ -35,6 +35,15 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Shim to load environment variables from .env into ENV in development.
 gem 'dotenv-rails'
 
+# Token based authentication for Rails JSON APIs.
+gem 'devise_token_auth'
+
+# Standardized Multi-Provider Authentication
+gem 'omniauth'
+
+# Rack::Cors provides support for Cross-Origin Resource Sharing (CORS) for Rack compatible web applications
+gem 'rack-cors', :require => 'rack/cors'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -46,5 +55,8 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # MailCatcher runs a super simple SMTP server which catches any message sent to it to display in a web interface.
+  gem 'mailcatcher'
 end
 
