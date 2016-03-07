@@ -2,8 +2,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       mount_devise_token_auth_for 'User', at: 'auth'
+
       resources :clients
-      match '*path', :to => 'base#routing_error', via: :all
+
+      match '*path', to: 'base#routing_error', via: :all
     end
   end
 

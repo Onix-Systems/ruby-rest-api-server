@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.2'
 # Use PostgreSQL as the database for Active Record
@@ -28,11 +27,13 @@ gem 'devise_token_auth'
 # Standardized Multi-Provider Authentication
 gem 'omniauth'
 
-# Rack::Cors provides support for Cross-Origin Resource Sharing (CORS) for Rack compatible web applications
-gem 'rack-cors', :require => 'rack/cors'
+# Rack::Cors provides support for Cross-Origin Resource Sharing
+# (CORS) for Rack compatible web applications
+gem 'rack-cors', require: 'rack/cors'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  # Call 'byebug' anywhere in the code to stop
+  # execution and get a debugger console
   gem 'byebug'
 end
 
@@ -40,13 +41,14 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  # Spring speeds up development by keeping your application
+  # running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
   # RuboCop is a Ruby static code analyzer.
   gem 'rubocop', require: false
 
-  # MailCatcher runs a super simple SMTP server which catches any message sent to it to display in a web interface.
+  # MailCatcher runs a super simple SMTP server which catches
+  # any message sent to it to display in a web interface.
   gem 'mailcatcher'
 end
-
