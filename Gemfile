@@ -43,6 +43,9 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
+  # RuboCop is a Ruby static code analyzer.
+  gem 'rubocop', require: false
+
   # MailCatcher runs a super simple SMTP server which catches any message sent to it to display in a web interface.
   gem 'mailcatcher'
 end
