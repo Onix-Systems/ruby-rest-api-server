@@ -1,6 +1,6 @@
 module API
   module V1
-    class ProductsController < BaseController
+    class ProductsController < APIController
       before_action :set_product, only: [:show, :edit, :update, :destroy]
 
       # GET /products
