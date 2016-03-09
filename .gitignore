@@ -40,4 +40,5 @@ bower.json
 .byebug_history
 
 .env.development
+.env.test
 .env.production
