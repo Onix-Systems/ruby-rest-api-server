@@ -51,4 +51,7 @@ group :development do
   # MailCatcher runs a super simple SMTP server which catches
   # any message sent to it to display in a web interface.
   gem 'mailcatcher'
+
+  # Overcommit is a tool to manage and configure Git hooks.
+  gem 'overcommit'
 end
