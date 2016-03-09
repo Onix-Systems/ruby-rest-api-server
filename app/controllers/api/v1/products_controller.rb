@@ -1,6 +1,6 @@
 module API
   module V1
-    class ProductsController < BaseController
+    class ProductsController < APIController
       before_action :set_product, only: [:show, :edit, :update, :destroy]
 
       # GET /products
@@ -53,6 +53,7 @@ module API
       end
 
       private
+
       # Use callbacks to share common setup or constraints between actions.
       def set_product
         @product = Product.find(params[:id])
@@ -65,4 +66,3 @@ module API
     end
   end
 end
-

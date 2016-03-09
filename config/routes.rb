@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       resources :clients
       resources :products
 
-      match '*path', to: 'base#routing_error', via: :all
+      match '*path', to: 'api#not_found', via: :all
     end
   end
 

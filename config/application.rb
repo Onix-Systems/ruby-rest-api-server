@@ -23,14 +23,6 @@ module RestApiServer
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    # Disable the asset pipeline
-    config.assets.enabled = false
-
-    # Will prevent the cli generator from creating assets when generating a scaffold.
-    config.generators do |g|
-      g.assets false
-    end
-
     # rack-cors configuration
     config.middleware.use Rack::Cors do
       allow do
