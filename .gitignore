@@ -39,6 +39,5 @@ bower.json
 # Ignore Byebug command history file.
 .byebug_history
 
-.rbenv-gemsets
 .env.development
 .env.production
