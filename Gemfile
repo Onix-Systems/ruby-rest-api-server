@@ -41,6 +41,15 @@ group :development, :test do
 
   # Behaviour Driven Development for Ruby
   gem 'rspec-rails', '~> 3.0'
+
+  # This gem implements the rspec command for Spring.
+  gem 'spring-commands-rspec'
+
+  # Guard::RSpec allows to automatically & intelligently launch specs when files are modified.
+  gem 'guard-rspec', require: false
+
+  # FSEvents API with signals handled
+  gem 'rb-fsevent', require: false if RUBY_PLATFORM =~ /darwin/i
 end
 
 group :development do
