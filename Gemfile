@@ -47,6 +47,9 @@ group :development, :test do
 
   # Guard::RSpec allows to automatically & intelligently launch specs when files are modified.
   gem 'guard-rspec', require: false
+
+  # FSEvents API with signals handled
+  gem 'rb-fsevent', require: false if RUBY_PLATFORM =~ /darwin/i
 end
 
 group :development do

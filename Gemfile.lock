@@ -248,6 +248,7 @@ DEPENDENCIES
   rack-cors
   rails (= 4.2.5.2)
   rails-api
+  rb-fsevent
   rspec-rails (~> 3.0)
   rubocop
   spring
