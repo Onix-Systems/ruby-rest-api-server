@@ -44,6 +44,9 @@ group :development, :test do
 
   # This gem implements the rspec command for Spring.
   gem 'spring-commands-rspec'
+
+  # Guard::RSpec allows to automatically & intelligently launch specs when files are modified.
+  gem 'guard-rspec', require: false
 end
 
 group :development do
