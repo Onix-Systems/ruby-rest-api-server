@@ -42,6 +42,15 @@ group :development, :test do
   # Behaviour Driven Development for Ruby
   gem 'rspec-rails', '~> 3.0'
 
+  # Provides Rails integration for factory_girl
+  gem 'factory_girl_rails'
+end
+
+group :development do
+  # Spring speeds up development by keeping your application
+  # running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+
   # This gem implements the rspec command for Spring.
   gem 'spring-commands-rspec'
 
@@ -50,12 +59,9 @@ group :development, :test do
 
   # FSEvents API with signals handled
   gem 'rb-fsevent', require: false if RUBY_PLATFORM =~ /darwin/i
-end
 
-group :development do
-  # Spring speeds up development by keeping your application
-  # running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  # A library for generating fake data such as names, addresses, and phone numbers.
+  gem 'faker'
 
   # RuboCop is a Ruby static code analyzer.
   gem 'rubocop', require: false
