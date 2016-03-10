@@ -41,6 +41,9 @@ group :development, :test do
 
   # Behaviour Driven Development for Ruby
   gem 'rspec-rails', '~> 3.0'
+
+  # This gem implements the rspec command for Spring.
+  gem 'spring-commands-rspec'
 end
 
 group :development do
