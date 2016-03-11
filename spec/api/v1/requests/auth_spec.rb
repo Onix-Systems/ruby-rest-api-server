@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'faker'
 
 RSpec.describe 'Auth', type: :request do
   describe 'POST /auth' do
@@ -17,8 +16,6 @@ RSpec.describe 'Auth', type: :request do
 
       expect(response).to have_http_status(200)
       expect(response.content_type).to eq('application/json')
-
-      json = JSON.parse(response.body, symbolize_names: true)
 
       expect(json[:data][:uid]).to eq(email)
       expect(json[:data][:email]).to eq(email)
