@@ -44,6 +44,12 @@ group :development, :test do
 
   # Provides Rails integration for factory_girl
   gem 'factory_girl_rails'
+
+  # A library for generating fake data such as names, addresses, and phone numbers.
+  gem 'faker'
+
+  # Shoulda Matchers provides RSpec- and Minitest-compatible one-liners that test common Rails functionality.
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development do
@@ -59,9 +65,6 @@ group :development do
 
   # FSEvents API with signals handled
   gem 'rb-fsevent', require: false if RUBY_PLATFORM =~ /darwin/i
-
-  # A library for generating fake data such as names, addresses, and phone numbers.
-  gem 'faker'
 
   # RuboCop is a Ruby static code analyzer.
   gem 'rubocop', require: false
