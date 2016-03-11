@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Auth', type: :request do
+RSpec.describe 'API Email Registration', type: :request do
   describe 'POST /auth' do
     it 'creates new user via email registration' do
       headers = { 'ACCEPT' => 'application/json' }
