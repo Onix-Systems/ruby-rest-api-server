@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe 'API Email Registration', type: :request do
-  describe 'POST /auth' do
-    it 'creates new user via email registration' do
-      headers = { 'ACCEPT' => 'application/json' }
-      email = Faker::Internet.email
-      password = Faker::Internet.password
+  let!(:headers) { { 'ACCEPT' => 'application/json' } }
+  let!(:email) { Faker::Internet.email }
+  let!(:password) { Faker::Internet.password }
 
+  context 'POST /auth' do
+    it 'creates new user via email registration' do
       post api_v1_user_registration_path, {
         email: email,
         password: password,
