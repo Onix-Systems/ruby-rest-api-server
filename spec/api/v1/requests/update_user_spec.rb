@@ -28,5 +28,20 @@ RSpec.describe 'API Account Updates', type: :request do
       expect(json[:data][:uid]).to eq(new_email)
       expect(json[:data][:email]).to eq(new_email)
     end
+
+    it "doesn't update an existing user's account settings without current_password" do
+      new_email = Faker::Internet.email
+      new_password = Faker::Internet.password
+
+      put api_v1_user_registration_path, {
+        email: new_email,
+        password: new_password,
+        password_confirmation: new_password
+      }, headers
+
+      expect(response).not_to have_http_status(200)
+      expect(response).to have_http_status(403)
+      expect(response.content_type).to eq('application/json')
+    end
   end
 end
