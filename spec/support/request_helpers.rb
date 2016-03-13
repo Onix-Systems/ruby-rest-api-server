@@ -18,5 +18,10 @@ module Requests
       scope = Devise::Mapping.find_scope!(resource_or_scope)
       logout(scope)
     end
+
+    def authenticated?(scope)
+      warden = request.env['warden']
+      warden.authenticated?(scope)
+    end
   end
 end
