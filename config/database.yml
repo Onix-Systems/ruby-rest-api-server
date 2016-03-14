@@ -5,21 +5,21 @@ default: &default
 
 development:
   <<: *default
-  database: <%= ENV["DB_REST_API_SERVER_NAME"] %>
-  username: <%= ENV["DB_REST_API_SERVER_USERNAME"] %>
-  password: <%= ENV["DB_REST_API_SERVER_PASSWORD"] %>
-  host: <%= ENV["DB_REST_API_SERVER_HOST"] %>
+  database: <%= ENV["DEV_DB_REST_API_SERVER_NAME"] %>
+  username: <%= ENV["DEV_DB_REST_API_SERVER_USERNAME"] %>
+  password: <%= ENV["DEV_DB_REST_API_SERVER_PASSWORD"] %>
+  host: <%= ENV["DEV_DB_REST_API_SERVER_HOST"] %>
 
 test:
   <<: *default
-  database: <%= ENV["DB_REST_API_SERVER_NAME"] %>
-  username: <%= ENV["DB_REST_API_SERVER_USERNAME"] %>
-  password: <%= ENV["DB_REST_API_SERVER_PASSWORD"] %>
-  host: <%= ENV["DB_REST_API_SERVER_HOST"] %>
+  database: <%= ENV["TEST_DB_REST_API_SERVER_NAME"] %>
+  username: <%= ENV["TEST_DB_REST_API_SERVER_USERNAME"] %>
+  password: <%= ENV["TEST_DB_REST_API_SERVER_PASSWORD"] %>
+  host: <%= ENV["TEST_DB_REST_API_SERVER_HOST"] %>
 
 production:
   <<: *default
-  database: <%= ENV["DB_REST_API_SERVER_NAME"] %>
-  username: <%= ENV["DB_REST_API_SERVER_USERNAME"] %>
-  password: <%= ENV["DB_REST_API_SERVER_PASSWORD"] %>
-  host: <%= ENV["DB_REST_API_SERVER_HOST"] %>
+  database: <%= ENV["PROD_DB_REST_API_SERVER_NAME"] %>
+  username: <%= ENV["PROD_DB_REST_API_SERVER_USERNAME"] %>
+  password: <%= ENV["PROD_DB_REST_API_SERVER_PASSWORD"] %>
+  host: <%= ENV["PROD_DB_REST_API_SERVER_HOST"] %>
