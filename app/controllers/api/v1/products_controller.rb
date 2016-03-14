@@ -61,7 +61,7 @@ module API
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def product_params
-        params.require(:product).permit(:gtin, :information_provider_gln, :bar_code_type, :unit_descriptor, :internal_supplier_code, :brand_name, :description_short, :description_full, :active)
+        params.require(:product).permit(:gtin, :bar_code_type, :unit_descriptor, :internal_supplier_code, :brand_name, :description_short, :description_full, :active)
       end
     end
   end
