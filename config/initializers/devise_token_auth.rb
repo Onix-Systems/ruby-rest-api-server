@@ -34,4 +34,7 @@ DeviseTokenAuth.setup do |config|
   # If, however, you wish to integrate with legacy Devise authentication, you can
   # do so by enabling this flag. NOTE: This feature is highly experimental!
   # enable_standard_devise_support = false
+
+  # The current_password param is checked before any account update
+  config.check_current_password_before_update = :attributes
 end

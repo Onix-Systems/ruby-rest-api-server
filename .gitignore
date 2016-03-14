@@ -2,7 +2,9 @@
 
 /log
 /tmp
+
 /spec/tmp
+/spec/examples.txt
 
 # Environment normalization:
 /.bundle
