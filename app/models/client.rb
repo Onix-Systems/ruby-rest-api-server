@@ -4,7 +4,7 @@ class Client < ActiveRecord::Base
 
   accepts_nested_attributes_for :client_products
 
-  validates :client_type, :gln, :full_name, :short_name, :description, presence: true
+  validates :client_type, :gln, :full_name, :short_name, presence: true
 
   validates :gln, :full_name, :short_name, uniqueness: true
 
