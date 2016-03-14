@@ -3,8 +3,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       mount_devise_token_auth_for 'User', at: 'auth'
 
-      resources :clients
-      resources :products
+      resources :clients, except: [:new, :edit]
+      resources :products, except: [:new, :edit]
 
       match '*path', to: 'api#not_found', via: :all
     end
