@@ -5,11 +5,10 @@ class CreateClients < ActiveRecord::Migration
       t.column :gln, :bigint, null: false
       t.string :full_name, null: false
       t.string :short_name, null: false
-      t.text :description, null: false
+      t.text :description
 
       t.timestamps null: false
     end
-
     add_index :clients, :gln, unique: true
     add_index :clients, :full_name, unique: true
     add_index :clients, :short_name, unique: true
