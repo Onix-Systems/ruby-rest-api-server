@@ -1,7 +1,7 @@
 module API
   module V1
     class ProductsController < APIController
-      before_action :set_product, only: [:show, :edit, :update, :destroy]
+      before_action :set_product, only: [:show, :update, :destroy]
 
       # GET /products
       # GET /products.json
@@ -12,15 +12,6 @@ module API
       # GET /products/1
       # GET /products/1.json
       def show
-      end
-
-      # GET /products/new
-      def new
-        @product = Product.new
-      end
-
-      # GET /products/1/edit
-      def edit
       end
 
       # POST /products
@@ -61,7 +52,10 @@ module API
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def product_params
-        params.require(:product).permit(:gtin, :bar_code_type, :unit_descriptor, :internal_supplier_code, :brand_name, :description_short, :description_full, :active)
+        params.require(:product).permit(
+          :gtin, :bar_code_type, :unit_descriptor, :internal_supplier_code, :brand_name, :description_short, :description_full, :active,
+          client_products_attributes: [client_attributes: [:client_type, :gln, :full_name, :short_name, :description]]
+        )
       end
     end
   end
