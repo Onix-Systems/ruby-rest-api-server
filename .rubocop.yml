@@ -4,6 +4,8 @@ Documentation:
   Enabled: false
 Metrics/LineLength:
   Enabled: false
+HasAndBelongsToMany:
+  Enabled: false
 
 AllCops:
   Exclude:
