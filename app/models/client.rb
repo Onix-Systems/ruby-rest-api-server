@@ -1,4 +1,6 @@
 class Client < ActiveRecord::Base
+  has_and_belongs_to_many :products
+
   validates :client_type, :gln, :full_name, :short_name, :description, presence: true
 
   validates :gln, :full_name, :short_name, uniqueness: true
