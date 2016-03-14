@@ -16,6 +16,14 @@ ActiveRecord::Schema.define(version: 20160314090641) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "client_products", force: :cascade do |t|
+    t.integer "client_id"
+    t.integer "product_id"
+  end
+
+  add_index "client_products", ["client_id"], name: "index_client_products_on_client_id", using: :btree
+  add_index "client_products", ["product_id"], name: "index_client_products_on_product_id", using: :btree
+
   create_table "clients", force: :cascade do |t|
     t.integer  "client_type",           null: false
     t.integer  "gln",         limit: 8, null: false
@@ -29,14 +37,6 @@ ActiveRecord::Schema.define(version: 20160314090641) do
   add_index "clients", ["full_name"], name: "index_clients_on_full_name", unique: true, using: :btree
   add_index "clients", ["gln"], name: "index_clients_on_gln", unique: true, using: :btree
   add_index "clients", ["short_name"], name: "index_clients_on_short_name", unique: true, using: :btree
-
-  create_table "clients_products", id: false, force: :cascade do |t|
-    t.integer "client_id"
-    t.integer "product_id"
-  end
-
-  add_index "clients_products", ["client_id"], name: "index_clients_products_on_client_id", using: :btree
-  add_index "clients_products", ["product_id"], name: "index_clients_products_on_product_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.integer  "gtin",                   limit: 8,                null: false
