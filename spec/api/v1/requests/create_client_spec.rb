@@ -24,5 +24,21 @@ RSpec.describe 'API Create Client', type: :request do
       expect(json[:full_name]).to eq(client_attributes[:full_name])
       expect(json[:short_name]).to eq(client_attributes[:short_name])
     end
+
+    it 'creates new client with nested products' do
+      client_attributes = attributes_for(:client).merge!(
+        client_products_attributes: [{ product_attributes: attributes_for(:product) }]
+      )
+
+      post api_v1_clients_path, { client: client_attributes }, headers
+
+      expect(response).to have_http_status(201)
+      expect(response.content_type).to eq('application/json')
+
+      expect(json[:client_type]).to eq(client_attributes[:client_type])
+      expect(json[:gln]).to eq(client_attributes[:gln])
+      expect(json[:full_name]).to eq(client_attributes[:full_name])
+      expect(json[:short_name]).to eq(client_attributes[:short_name])
+    end
   end
 end
