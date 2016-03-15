@@ -7,7 +7,7 @@ RSpec.describe 'API Email Authentication', type: :request do
   let!(:user) { create(:user, email: email, password: password) }
   let!(:headers) { { 'ACCEPT' => 'application/json' } }
 
-  context 'POST /sign_in' do
+  context 'POST /api/v1/auth/sign_in' do
     it 'return a JSON representation of the User model on successful login
         along with the access-token and client in the header of the response' do
       post api_v1_user_session_path, {
@@ -29,7 +29,7 @@ RSpec.describe 'API Email Authentication', type: :request do
     end
   end
 
-  context 'POST /sign_in' do
+  context 'POST /api/v1/auth/sign_in' do
     it "doesn't login user with the wrong credentials" do
       wrong_email = Faker::Internet.email
       wrong_password = Faker::Internet.password

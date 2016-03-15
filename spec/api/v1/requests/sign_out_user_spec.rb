@@ -10,7 +10,7 @@ RSpec.describe 'API Sign Out User', type: :request do
   include_context 'configure Warden test helpers'
   include_context 'sign in user and create new auth token'
 
-  context 'DELETE /sign_out' do
+  context 'DELETE /api/v1/sign_out' do
     it "will invalidate the user's authentication token to end the user's current session" do
       delete destroy_api_v1_user_session_path, {}, headers
 

@@ -5,7 +5,7 @@ RSpec.describe 'API Email Registration', type: :request do
   let!(:email) { Faker::Internet.email }
   let!(:password) { Faker::Internet.password }
 
-  context 'POST /auth' do
+  context 'POST /api/v1/auth' do
     it 'creates new user via email registration' do
       post api_v1_user_registration_path, {
         email: email,
