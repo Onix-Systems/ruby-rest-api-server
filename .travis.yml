@@ -1,0 +1,16 @@
+---
+# Enable container-based infrastructure
+sudo: false
+
+language: ruby
+
+cache: bundler
+
+rvm:
+  - 2.3.0
+
+script:
+  - rake travis
+
+notifications:
+  email: false
