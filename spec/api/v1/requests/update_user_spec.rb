@@ -10,7 +10,7 @@ RSpec.describe 'API Account Updates', type: :request do
   include_context 'configure Warden test helpers'
   include_context 'sign in user and create new auth token'
 
-  context 'PUT /auth' do
+  context 'PUT /api/v1/auth' do
     it "updates an existing user's account settings" do
       new_email = Faker::Internet.email
       new_password = Faker::Internet.password

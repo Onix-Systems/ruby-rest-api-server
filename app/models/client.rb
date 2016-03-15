@@ -1,7 +1,10 @@
 class Client < ActiveRecord::Base
-  has_and_belongs_to_many :products
+  has_many :client_products, inverse_of: :client, dependent: :destroy
+  has_many :products, through: :client_products
 
-  validates :client_type, :gln, :full_name, :short_name, :description, presence: true
+  accepts_nested_attributes_for :client_products
+
+  validates :client_type, :gln, :full_name, :short_name, presence: true
 
   validates :gln, :full_name, :short_name, uniqueness: true
 

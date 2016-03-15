@@ -1,7 +1,7 @@
 module API
   module V1
     class ClientsController < APIController
-      before_action :set_client, only: [:show, :edit, :update, :destroy]
+      before_action :set_client, only: [:show, :update, :destroy]
 
       # GET /clients
       # GET /clients.json
@@ -12,15 +12,6 @@ module API
       # GET /clients/1
       # GET /clients/1.json
       def show
-      end
-
-      # GET /clients/new
-      def new
-        @client = Client.new
-      end
-
-      # GET /clients/1/edit
-      def edit
       end
 
       # POST /clients
@@ -61,7 +52,10 @@ module API
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def client_params
-        params.require(:client).permit(:client_type, :gln, :full_name, :short_name, :description)
+        params.require(:client).permit(
+          :client_type, :gln, :full_name, :short_name, :description,
+          client_products_attributes: [product_attributes: [:gtin, :bar_code_type, :unit_descriptor, :internal_supplier_code, :brand_name, :description_short, :description_full, :active]]
+        )
       end
     end
   end
