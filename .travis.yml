@@ -20,7 +20,7 @@ before_script:
 
 script:
   - bundle exec rubocop -Dc .rubocop.yml
-  - RAILS_ENV=travis bundle exec rubocop
+  - RAILS_ENV=travis bundle exec rspec
 
 notifications:
   email: false
