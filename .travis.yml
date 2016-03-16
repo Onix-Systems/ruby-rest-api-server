@@ -19,7 +19,7 @@ before_script:
   - bundle exec rake db:migrate RAILS_ENV=travis
 
 script:
-  - RAILS_ENV=travis bundle exec rspec
+  - bundle exec rubocop -Dc .rubocop.yml
   - RAILS_ENV=travis bundle exec rubocop
 
 notifications:
