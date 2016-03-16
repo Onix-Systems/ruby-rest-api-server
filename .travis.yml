@@ -12,7 +12,7 @@ rvm:
 bundler_args: --without darwin
 
 script:
-  - rake travis
+  - bundle exec rake travis
 
 notifications:
   email: false
