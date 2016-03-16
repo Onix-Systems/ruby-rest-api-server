@@ -16,9 +16,11 @@ bundler_args: --without darwin
 
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
+  - rake db:migrate RAILS_ENV=travis
 
 script:
-  - bundle exec rake travis RAILS_ENV=travis
+  - bundle exec rspec RAILS_ENV=travis
+  - bundle exec rubocop RAILS_ENV=travis
 
 notifications:
   email: false
