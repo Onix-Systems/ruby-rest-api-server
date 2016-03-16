@@ -63,8 +63,10 @@ group :development do
   # Guard::RSpec allows to automatically & intelligently launch specs when files are modified.
   gem 'guard-rspec', require: false
 
-  # FSEvents API with signals handled
-  gem 'rb-fsevent', require: false if RUBY_PLATFORM =~ /darwin/i
+  group :darwin do
+    # FSEvents API with signals handled
+    gem 'rb-fsevent', require: false if RUBY_PLATFORM =~ /darwin/i
+  end
 
   # RuboCop is a Ruby static code analyzer.
   gem 'rubocop', require: false
