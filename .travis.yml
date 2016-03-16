@@ -2,12 +2,6 @@
 # Enable container-based infrastructure
 sudo: false
 
-env:
-  - TEST_DB_REST_API_SERVER_NAME=travis_ci_test
-  - TEST_DB_REST_API_SERVER_USERNAME=postgres
-  - TEST_DB_REST_API_SERVER_PASSWORD=''
-  - TEST_DB_REST_API_SERVER_HOST=localhost
-
 language: ruby
 
 cache: bundler
@@ -24,7 +18,7 @@ before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
 
 script:
-  - bundle exec rake travis
+  - bundle exec rake travis RAILS_ENV=travis
 
 notifications:
   email: false
