@@ -23,3 +23,10 @@ production:
   username: <%= ENV["PROD_DB_REST_API_SERVER_USERNAME"] %>
   password: <%= ENV["PROD_DB_REST_API_SERVER_PASSWORD"] %>
   host: <%= ENV["PROD_DB_REST_API_SERVER_HOST"] %>
+
+travis:
+  <<: *default
+  database: <%= ENV["TEST_DB_REST_API_SERVER_NAME"] %>
+  username: <%= ENV["TEST_DB_REST_API_SERVER_USERNAME"] %>
+  password: <%= ENV["TEST_DB_REST_API_SERVER_PASSWORD"] %>
+  host: <%= ENV["TEST_DB_REST_API_SERVER_HOST"] %>
