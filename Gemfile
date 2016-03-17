@@ -34,7 +34,7 @@ gem 'omniauth'
 # (CORS) for Rack compatible web applications
 gem 'rack-cors', require: 'rack/cors'
 
-group :development, :test do
+group :development, :test, :travis do
   # Call 'byebug' anywhere in the code to stop
   # execution and get a debugger console
   gem 'byebug'
@@ -63,8 +63,10 @@ group :development do
   # Guard::RSpec allows to automatically & intelligently launch specs when files are modified.
   gem 'guard-rspec', require: false
 
-  # FSEvents API with signals handled
-  gem 'rb-fsevent', require: false if RUBY_PLATFORM =~ /darwin/i
+  group :darwin do
+    # FSEvents API with signals handled
+    gem 'rb-fsevent', require: false if RUBY_PLATFORM =~ /darwin/i
+  end
 
   # RuboCop is a Ruby static code analyzer.
   gem 'rubocop', require: false
