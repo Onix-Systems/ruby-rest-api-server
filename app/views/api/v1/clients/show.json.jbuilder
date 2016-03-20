@@ -1,6 +1,6 @@
 json.extract! @client, :id, :client_type, :gln, :full_name, :short_name, :description, :created_at, :updated_at
 
-if @client.products.present?
+if @client.products.any?
   json.products @client.products do |product|
     json.extract! product, :id, :gtin, :bar_code_type, :unit_descriptor, :internal_supplier_code,
                   :brand_name, :description_short, :description_full, :active, :created_at, :updated_at

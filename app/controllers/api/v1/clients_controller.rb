@@ -54,7 +54,7 @@ module API
       def client_params
         params.require(:client).permit(
           :client_type, :gln, :full_name, :short_name, :description,
-          client_products_attributes: [product_attributes: [:gtin, :bar_code_type, :unit_descriptor, :internal_supplier_code, :brand_name, :description_short, :description_full, :active]]
+          client_products_attributes: [:id, product_attributes: [:gtin, :bar_code_type, :unit_descriptor, :internal_supplier_code, :brand_name, :description_short, :description_full, :active]]
         )
       end
     end
