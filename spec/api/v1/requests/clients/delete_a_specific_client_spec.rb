@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'API Update Client', type: :request do
+RSpec.describe 'API Delete Client', type: :request do
   let!(:email) { Faker::Internet.email }
   let!(:password) { Faker::Internet.password }
 
