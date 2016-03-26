@@ -3,6 +3,7 @@ module API
     class APIController < ActionController::API
       include DeviseTokenAuth::Concerns::SetUserByToken
       before_action :authenticate_api_v1_user!
+      respond_to :json
 
       rescue_from ActionController::ParameterMissing, with: :missing_parameter
 
