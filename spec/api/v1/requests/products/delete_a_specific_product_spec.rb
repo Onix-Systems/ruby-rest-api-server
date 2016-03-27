@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'API Update Client', type: :request do
+RSpec.describe 'API Delete Product', type: :request do
   let!(:email) { Faker::Internet.email }
   let!(:password) { Faker::Internet.password }
 
@@ -11,12 +11,12 @@ RSpec.describe 'API Update Client', type: :request do
   include_context 'sign in user and create new auth token'
 
   before do
-    @client = create(:client)
+    @product = create(:product)
   end
 
-  context 'DELETE /api/v1/clients/:id' do
-    it 'deletes a specific client' do
-      delete api_v1_client_path(id: @client.id), {}, headers
+  context 'DELETE /api/v1/products/:id' do
+    it 'deletes a specific product' do
+      delete api_v1_product_path(id: @product.id), {}, headers
 
       expect(response).to have_http_status(204)
     end
