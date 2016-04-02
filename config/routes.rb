@@ -7,8 +7,6 @@ Rails.application.routes.draw do
         resources :products, except: [:new, :edit]
       end
       resources :products, except: [:new, :edit]
-
-      match '*path', to: 'api#not_found', via: :all
     end
   end
 
