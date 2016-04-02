@@ -1,23 +1,24 @@
 module API
   module V1
     class ProductsController < APIController
+      before_action :set_client, only: [:index, :show, :create, :update, :destroy]
       before_action :set_product, only: [:show, :update, :destroy]
 
-      # GET /products
-      # GET /products.json
+      # GET /api/v1/products(.:format)
+      # GET /api/v1/clients/:client_id/products(.:format)
       def index
-        @products = Product.all
+        @products = @client.present? ? @client.products : Product.all
       end
 
-      # GET /products/1
-      # GET /products/1.json
+      # GET /api/v1/products/:id(.:format)
+      # GET /api/v1/clients/:client_id/products/:id(.:format)
       def show
       end
 
-      # POST /products
-      # POST /products.json
+      # POST /api/v1/products(.:format)
+      # POST /api/v1/clients/:client_id/products(.:format)
       def create
-        @product = Product.new(product_params)
+        @product = @client.present? ? @client.products.new(product_params) : Product.new(product_params)
 
         if @product.save
           render :show, status: :created, location: api_v1_product_path(@product)
@@ -26,8 +27,8 @@ module API
         end
       end
 
-      # PATCH/PUT /products/1
-      # PATCH/PUT /products/1.json
+      # PATCH/PUT /api/v1/products/:id(.:format)
+      # PATCH/PUT /api/v1/clients/:client_id/products/:id(.:format)
       def update
         if @product.update(product_params)
           render :show, status: :ok, location: api_v1_product_path(@product)
@@ -36,8 +37,8 @@ module API
         end
       end
 
-      # DELETE /products/1
-      # DELETE /products/1.json
+      # DELETE /products/:id(.:format)
+      # DELETE /api/v1/clients/:client_id/products/:id(.:format)
       def destroy
         @product.destroy
         head :no_content
@@ -46,8 +47,12 @@ module API
       private
 
       # Use callbacks to share common setup or constraints between actions.
+      def set_client
+        @client = Client.find(params[:client_id]) if params[:client_id].present?
+      end
+
       def set_product
-        @product = Product.find(params[:id])
+        @product = @client.present? ? @client.products.find(params[:id]) : Product.find(params[:id])
       end
 
       # Never trust parameters from the scary internet, only allow the white list through.
