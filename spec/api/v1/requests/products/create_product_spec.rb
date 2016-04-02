@@ -10,7 +10,7 @@ RSpec.describe 'API Create Product', type: :request do
   include_context 'configure Warden test helpers'
   include_context 'sign in user and create new auth token'
 
-  context 'POST /api/v1/clients' do
+  context 'POST /api/v1/products' do
     it 'creates new product' do
       product_attributes = attributes_for(:product)
 

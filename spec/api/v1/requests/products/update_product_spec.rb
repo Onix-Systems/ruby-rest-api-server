@@ -10,16 +10,7 @@ RSpec.describe 'API Update Product', type: :request do
   include_context 'configure Warden test helpers'
   include_context 'sign in user and create new auth token'
 
-  let(:product_attributes) do
-    {
-      gtin: Random.rand(9_000_000_000_000),
-      bar_code_type: Faker::Lorem.characters(10),
-      unit_descriptor: Faker::Lorem.characters(10),
-      internal_supplier_code: Faker::Lorem.characters(10),
-      brand_name: Faker::Commerce.product_name,
-      description_short: Faker::Lorem.sentence
-    }
-  end
+  let(:product_attributes) { attributes_for(:product) }
 
   context 'PUT /api/v1/products/:id' do
     it 'updates a specific product' do
@@ -43,12 +34,7 @@ RSpec.describe 'API Update Product', type: :request do
         p.clients.create(attributes_for(:client))
       end
 
-      client_attributes = {
-        client_type: Random.rand(1..3),
-        gln: Random.rand(9_000_000_000_000),
-        short_name: Faker::Company.name,
-        full_name: Faker::Company.suffix + ' ' + Faker::Company.name
-      }
+      client_attributes = attributes_for(:client)
 
       product_attributes[:client_products_attributes] = [{ id: product.client_products.at(0).id, client_attributes: client_attributes }]
 
