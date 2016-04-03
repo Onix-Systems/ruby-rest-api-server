@@ -49,17 +49,12 @@ RSpec.describe 'API Create Product Belonging To A Specific Client', type: :reque
       expect(json[:brand_name]).to eq(product_attributes[:brand_name])
       expect(json[:description_short]).to eq(product_attributes[:description_short])
 
-      expect(json[:clients].length).to eq(2)
+      expect(json[:clients].length).to eq(1)
 
-      expect(json[:clients][0][:client_type]).to eq(@client.client_type)
-      expect(json[:clients][0][:gln]).to eq(@client.gln)
-      expect(json[:clients][0][:full_name]).to eq(@client.full_name)
-      expect(json[:clients][0][:short_name]).to eq(@client.short_name)
-
-      expect(json[:clients][1][:client_type]).to eq(client_attributes[:client_type])
-      expect(json[:clients][1][:gln]).to eq(client_attributes[:gln])
-      expect(json[:clients][1][:full_name]).to eq(client_attributes[:full_name])
-      expect(json[:clients][1][:short_name]).to eq(client_attributes[:short_name])
+      expect(json[:clients][0][:client_type]).to eq(client_attributes[:client_type])
+      expect(json[:clients][0][:gln]).to eq(client_attributes[:gln])
+      expect(json[:clients][0][:full_name]).to eq(client_attributes[:full_name])
+      expect(json[:clients][0][:short_name]).to eq(client_attributes[:short_name])
     end
   end
 end
