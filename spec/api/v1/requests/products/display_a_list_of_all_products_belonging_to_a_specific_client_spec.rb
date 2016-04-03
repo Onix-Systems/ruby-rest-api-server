@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'API Display A List Of Products', type: :request do
+RSpec.describe 'API Display A List Of Products Belonging To A Specific Client', type: :request do
   let!(:email) { Faker::Internet.email }
   let!(:password) { Faker::Internet.password }
 
@@ -11,12 +11,13 @@ RSpec.describe 'API Display A List Of Products', type: :request do
   include_context 'sign in user and create new auth token'
 
   before do
-    @product = create(:product)
+    @client = create(:client)
+    @product = @client.products.create(attributes_for(:product))
   end
 
-  context 'GET /api/v1/products' do
-    it 'displays a list of all products' do
-      get api_v1_products_path, {}, headers
+  context 'GET /api/v1/clients/:client_id/products' do
+    it 'displays a list of all products belonging to a specific client' do
+      get api_v1_client_products_path(client_id: @client.id), {}, headers
 
       expect(response).to have_http_status(200)
       expect(response.content_type).to eq('application/json')

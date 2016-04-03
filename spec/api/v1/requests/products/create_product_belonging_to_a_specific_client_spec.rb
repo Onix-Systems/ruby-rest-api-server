@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'API Create Product', type: :request do
+RSpec.describe 'API Create Product Belonging To A Specific Client', type: :request do
   let!(:email) { Faker::Internet.email }
   let!(:password) { Faker::Internet.password }
 
@@ -10,11 +10,15 @@ RSpec.describe 'API Create Product', type: :request do
   include_context 'configure Warden test helpers'
   include_context 'sign in user and create new auth token'
 
-  context 'POST /api/v1/clients' do
-    it 'creates new product' do
+  before do
+    @client = create(:client)
+  end
+
+  context 'POST /api/v1/clients/:client_id/products' do
+    it 'creates new product belonging to a specific client' do
       product_attributes = attributes_for(:product)
 
-      post api_v1_products_path, { product: product_attributes }, headers
+      post api_v1_client_products_path(client_id: @client.id), { product: product_attributes }, headers
 
       expect(response).to have_http_status(201)
       expect(response.content_type).to eq('application/json')
@@ -27,13 +31,13 @@ RSpec.describe 'API Create Product', type: :request do
       expect(json[:description_short]).to eq(product_attributes[:description_short])
     end
 
-    it 'creates new product with nested clients' do
+    it 'creates new product belonging to a specific client with nested clients' do
       client_attributes = attributes_for(:client)
       product_attributes = attributes_for(:product).merge!(
         client_products_attributes: [{ client_attributes: client_attributes }]
       )
 
-      post api_v1_products_path, { product: product_attributes }, headers
+      post api_v1_client_products_path(client_id: @client.id), { product: product_attributes }, headers
 
       expect(response).to have_http_status(201)
       expect(response.content_type).to eq('application/json')
@@ -44,6 +48,8 @@ RSpec.describe 'API Create Product', type: :request do
       expect(json[:internal_supplier_code]).to eq(product_attributes[:internal_supplier_code])
       expect(json[:brand_name]).to eq(product_attributes[:brand_name])
       expect(json[:description_short]).to eq(product_attributes[:description_short])
+
+      expect(json[:clients].length).to eq(1)
 
       expect(json[:clients][0][:client_type]).to eq(client_attributes[:client_type])
       expect(json[:clients][0][:gln]).to eq(client_attributes[:gln])

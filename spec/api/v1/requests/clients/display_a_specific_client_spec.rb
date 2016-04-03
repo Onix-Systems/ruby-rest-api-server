@@ -16,17 +16,15 @@ RSpec.describe 'API Display Client', type: :request do
 
   context 'GET /api/v1/clients/:id' do
     it 'displays a specific client' do
-      client_attributes = attributes_for(:client)
-
       get api_v1_client_path(id: @client.id), {}, headers
 
       expect(response).to have_http_status(200)
       expect(response.content_type).to eq('application/json')
 
-      expect(json[:client_type]).to eq(client_attributes[:client_type])
-      expect(json[:gln]).to eq(client_attributes[:gln])
-      expect(json[:full_name]).to eq(client_attributes[:full_name])
-      expect(json[:short_name]).to eq(client_attributes[:short_name])
+      expect(json[:client_type]).to eq(@client.client_type)
+      expect(json[:gln]).to eq(@client.gln)
+      expect(json[:full_name]).to eq(@client.full_name)
+      expect(json[:short_name]).to eq(@client.short_name)
     end
   end
 end

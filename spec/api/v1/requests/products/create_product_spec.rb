@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'API Update Product', type: :request do
+RSpec.describe 'API Create Product', type: :request do
   let!(:email) { Faker::Internet.email }
   let!(:password) { Faker::Internet.password }
 
@@ -10,15 +10,13 @@ RSpec.describe 'API Update Product', type: :request do
   include_context 'configure Warden test helpers'
   include_context 'sign in user and create new auth token'
 
-  let(:product_attributes) { attributes_for(:product) }
+  context 'POST /api/v1/products' do
+    it 'creates new product' do
+      product_attributes = attributes_for(:product)
 
-  context 'PUT /api/v1/products/:id' do
-    it 'updates a specific product' do
-      product = create(:product)
+      post api_v1_products_path, { product: product_attributes }, headers
 
-      put api_v1_product_path(id: product.id), { product: product_attributes }, headers
-
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(201)
       expect(response.content_type).to eq('application/json')
 
       expect(json[:gtin]).to eq(product_attributes[:gtin])
@@ -29,18 +27,15 @@ RSpec.describe 'API Update Product', type: :request do
       expect(json[:description_short]).to eq(product_attributes[:description_short])
     end
 
-    it 'updates a specific product with nested clients' do
-      product = create(:product) do |p|
-        p.clients.create(attributes_for(:client))
-      end
-
+    it 'creates new product with nested clients' do
       client_attributes = attributes_for(:client)
+      product_attributes = attributes_for(:product).merge!(
+        client_products_attributes: [{ client_attributes: client_attributes }]
+      )
 
-      product_attributes[:client_products_attributes] = [{ id: product.client_products.at(0).id, client_attributes: client_attributes }]
+      post api_v1_products_path, { product: product_attributes }, headers
 
-      put api_v1_product_path(id: product.id), { product: product_attributes }, headers
-
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(201)
       expect(response.content_type).to eq('application/json')
 
       expect(json[:gtin]).to eq(product_attributes[:gtin])
