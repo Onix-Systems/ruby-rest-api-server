@@ -1,10 +1,10 @@
 FactoryGirl.define do
   factory :product do
-    gtin 4_820_001_356_298
-    bar_code_type 'EAN_UCC_13_SYMBOL'
-    unit_descriptor 'BASE_UNIT_OR_EACH'
-    internal_supplier_code 'CH05060104UA'
-    brand_name 'Chumak'
-    description_short 'Chumak Sause Chumak Kherson glass 500 g'
+    sequence(:gtin) { |n| 1_000_000_000_000 + n }
+    bar_code_type Faker::Lorem.characters(10)
+    unit_descriptor Faker::Lorem.characters(10)
+    internal_supplier_code Faker::Lorem.characters(10)
+    brand_name Faker::Commerce.product_name
+    description_short Faker::Lorem.sentence
   end
 end

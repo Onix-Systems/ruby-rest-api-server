@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'API Update Product', type: :request do
+RSpec.describe 'API Update Product Belonging To A Specific Client', type: :request do
   let!(:email) { Faker::Internet.email }
   let!(:password) { Faker::Internet.password }
 
@@ -12,11 +12,14 @@ RSpec.describe 'API Update Product', type: :request do
 
   let(:product_attributes) { attributes_for(:product) }
 
-  context 'PUT /api/v1/products/:id' do
-    it 'updates a specific product' do
-      product = create(:product)
+  before do
+    @client = create(:client)
+    @product = @client.products.create(attributes_for(:product))
+  end
 
-      put api_v1_product_path(id: product.id), { product: product_attributes }, headers
+  context 'PUT /api/v1/clients/:client_id/products/:id' do
+    it 'updates a specific product belonging to a specific client' do
+      put api_v1_client_product_path(client_id: @client.id, id: @product.id), { product: product_attributes }, headers
 
       expect(response).to have_http_status(200)
       expect(response.content_type).to eq('application/json')
@@ -29,16 +32,12 @@ RSpec.describe 'API Update Product', type: :request do
       expect(json[:description_short]).to eq(product_attributes[:description_short])
     end
 
-    it 'updates a specific product with nested clients' do
-      product = create(:product) do |p|
-        p.clients.create(attributes_for(:client))
-      end
-
+    it 'updates a specific product belonging to a specific client with nested clients' do
       client_attributes = attributes_for(:client)
 
-      product_attributes[:client_products_attributes] = [{ id: product.client_products.at(0).id, client_attributes: client_attributes }]
+      product_attributes[:client_products_attributes] = [{ id: @product.client_products.at(0).id, client_attributes: client_attributes }]
 
-      put api_v1_product_path(id: product.id), { product: product_attributes }, headers
+      put api_v1_client_product_path(client_id: @client.id, id: @product.id), { product: product_attributes }, headers
 
       expect(response).to have_http_status(200)
       expect(response.content_type).to eq('application/json')

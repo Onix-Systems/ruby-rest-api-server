@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :client do
-    client_type 0
-    gln 4_820_001_350_005
-    full_name "Private Joint Stock Company 'Chumak'"
-    short_name "PJSC 'Chumak'"
+    client_type Random.rand(1..3)
+    sequence(:gln) { |n| 1_000_000_000_000 + n }
+    sequence(:full_name) { |n| "#{Faker::Company.suffix} #{Faker::Company.name} #{n}" }
+    sequence(:short_name) { |n| "#{Faker::Company.name} #{n}" }
   end
 end
