@@ -6,7 +6,9 @@ Rails.application.routes.draw do
       resources :clients, except: [:new, :edit] do
         resources :products, except: [:new, :edit]
       end
-      resources :products, except: [:new, :edit]
+      resources :products, except: [:new, :edit] do
+        resources :clients, except: [:new, :edit]
+      end
     end
   end
 
