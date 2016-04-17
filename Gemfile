@@ -34,6 +34,10 @@ gem 'omniauth'
 # (CORS) for Rack compatible web applications
 gem 'rack-cors', require: 'rack/cors'
 
+# A Scope & Engine based, clean, powerful, customizable and
+# sophisticated paginator for Rails 3 and 4
+gem 'kaminari'
+
 group :development, :test, :travis do
   # Call 'byebug' anywhere in the code to stop
   # execution and get a debugger console

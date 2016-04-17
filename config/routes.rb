@@ -3,11 +3,16 @@ Rails.application.routes.draw do
     namespace :v1 do
       mount_devise_token_auth_for 'User', at: 'auth'
 
-      resources :clients, except: [:new, :edit] do
-        resources :products, except: [:new, :edit]
+      concern :paginatable do
+        get '(/page/:page)(/per_page/:per_page)', action: :index, on: :collection, as: ''
       end
-      resources :products, except: [:new, :edit] do
-        resources :clients, except: [:new, :edit]
+
+      resources :clients, except: [:new, :edit], concerns: :paginatable do
+        resources :products, except: [:new, :edit], concerns: :paginatable
+      end
+
+      resources :products, except: [:new, :edit], concerns: :paginatable do
+        resources :clients, except: [:new, :edit], concerns: :paginatable
       end
     end
   end

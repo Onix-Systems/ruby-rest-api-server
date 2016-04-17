@@ -6,5 +6,15 @@ FactoryGirl.define do
     internal_supplier_code Faker::Lorem.characters(10)
     brand_name Faker::Commerce.product_name
     description_short Faker::Lorem.sentence
+
+    factory :product_with_clients do
+      transient do
+        clients_count 5
+      end
+
+      after(:create) do |product, evaluator|
+        create_list(:client, evaluator.clients_count, products: [product])
+      end
+    end
   end
 end
