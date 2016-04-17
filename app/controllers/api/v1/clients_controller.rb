@@ -3,11 +3,15 @@ module API
     class ClientsController < APIController
       before_action :set_product, only: [:index, :show, :create, :update, :destroy]
       before_action :set_client, only: [:show, :update, :destroy]
+      before_action :set_new_client, only: [:create]
+      before_action :set_clients, only: [:index]
 
-      # GET /api/v1/clients(.:format)
-      # GET /api/v1/products/:product_id/clients(.:format)
+      # GET /api/v1/clients(/page/:page)(/per_page/:per_page)(.:format)
+      # GET /api/v1/products/:product_id/clients(/page/:page)(/per_page/:per_page)(.:format)
       def index
-        @clients = @product.present? ? @product.clients : Client.all
+        clients = @_clients.order('clients.id ASC')
+        clients = clients.page(params[:page]).per(params[:per_page]) if params[:page].present?
+        @clients = clients
       end
 
       # GET /api/v1/clients/:id(.:format)
@@ -18,8 +22,6 @@ module API
       # POST /api/v1/clients(.:format)
       # POST /api/v1/products/:product_id/clients(.:format)
       def create
-        @client = @product.present? ? @product.clients.new(client_params) : Client.new(client_params)
-
         if @client.save
           render :show, status: :created, location: api_v1_client_path(@client)
         else
@@ -52,7 +54,30 @@ module API
       end
 
       def set_client
-        @client = @product.present? ? @product.clients.find(params[:id]) : Client.find(params[:id])
+        @client =
+          if @product.present?
+            @product.clients.find(params[:id])
+          else
+            Client.find(params[:id])
+          end
+      end
+
+      def set_new_client
+        @client =
+          if @product.present?
+            @product.clients.new(client_params)
+          else
+            Client.new(client_params)
+          end
+      end
+
+      def set_clients
+        @_clients =
+          if @product.present?
+            @product.clients
+          else
+            Client
+          end
       end
 
       # Never trust parameters from the scary internet, only allow the white list through.
