@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBotRails.define do
   factory :product do
     sequence(:gtin) { |n| 1_000_000_000_000 + n }
     bar_code_type Faker::Lorem.characters(10)

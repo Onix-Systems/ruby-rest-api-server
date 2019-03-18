@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBotRails.define do
   factory :user do
     email { Faker::Internet.email }
     name { Faker::Internet.user_name }
