@@ -1,4 +1,4 @@
-FactoryBotRails.define do
+FactoryBot.define do
   factory :client do
     client_type Random.rand(1..3)
     sequence(:gln) { |n| 1_000_000_000_000 + n }
