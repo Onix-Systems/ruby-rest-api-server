@@ -7,7 +7,7 @@ gem 'rails', '4.2.5.2'
 gem 'rails-api'
 
 # Use PostgreSQL as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 0.18'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
@@ -47,7 +47,7 @@ group :development, :test, :travis do
   gem 'rspec-rails', '~> 3.0'
 
   # Provides Rails integration for factory_girl
-  gem 'factory_girl_rails'
+  gem "factory_bot"
 
   # A library for generating fake data such as names, addresses, and phone numbers.
   gem 'faker'
