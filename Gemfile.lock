@@ -141,7 +141,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    rack (1.6.4)
+    rack (1.6.12)
     rack-cors (0.4.0)
     rack-protection (1.5.3)
       rack
@@ -263,7 +263,6 @@ DEPENDENCIES
   rack-cors
   rails (= 4.2.5.2)
   rails-api
-  rb-fsevent
   rspec-rails (~> 3.0)
   rubocop
   shoulda-matchers (~> 3.1)
